@@ -1,0 +1,39 @@
+* {
+    font-family: Arial, Helvetica, sans-serif ;
+    margin: 30;
+    padding: 10;
+    box-sizing: border-box;
+}
+
+body {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#contenedor {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+
+#caja1, #caja2   {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 10%;
+    width: 200px;
+    height: 200px;
+}
+
+#caja1 {
+    background-color: rgba(125, 125, 235, 0.55);
+    color:white;    
+}
+#caja2 {
+    background-color: rgb(35, 15, 145);
+    color:white;    
+}

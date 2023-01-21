@@ -1,0 +1,12 @@
+h1, h2, h3 {
+    font-family: Arial, Helvetica, sans-serif ;
+}
+
+div div div{
+    display: flexbox;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px; 
+    background-color:rgba(85, 65, 215, 0.65);
+}

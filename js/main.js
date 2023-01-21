@@ -126,15 +126,15 @@ function mostrarCocheras() {
         const div = document.createElement('div');
         let automaticoTexto = "No tiene";
         if(cochera.automatico){
-            automaticoTexto = "Suma un 10% al precio!";
+            automaticoTexto = "Es mas segura! Suma un 10% al precio!";
         }
         let grandeTexto = "No tiene";
         if(cochera.grande){
-            grandeTexto = "Suma un 10% al precio!";
+            grandeTexto = "Entran camionetas!! Suma 10% al precio!";
         }
         let cubiertaTexto = "No tiene";
         if(cochera.cubierta){
-            cubiertaTexto = "Suma un 10% al precio!";
+            cubiertaTexto = "Proteje de lluvia y granizo? Suma 10% al precio!";
         }
         
         div.innerHTML = `

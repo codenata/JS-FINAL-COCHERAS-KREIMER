@@ -105,7 +105,7 @@ Swal.fire({
 })
 
 
-    const nuevaCochera = new Cochera(user, email, nuevoPrecio, direccion, zona, automatico, grande, cubierta);
+    const nuevaCochera = new Cochera(user, email, precio, direccion, zona, automatico, grande, cubierta);
     cocheras.unshift(nuevaCochera);
     //Agrego al LocalStorage:
     localStorage.setItem('cocheras', JSON.stringify(cocheras));
@@ -141,7 +141,7 @@ function mostrarCocheras() {
             <div>
                 <p>Usuario: ${cochera.user}</p>
                 <p>Email: ${cochera.email}</p>
-                <p>Precio: $${cochera.nuevoPrecio}</p>
+                <p>Precio: $${cochera.precio}</p>
                 <p>Direccion: ${cochera.direccion}</p>
                 <p>Zona: ${cochera.zona}</p>
                 <p>Control Remoto & Porton Automatico: ${automaticoTexto}</p>

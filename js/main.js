@@ -4,7 +4,7 @@ Los dueños completan el formulario con sus datos personales y luego los de la c
 El sistema toma la data por medio de un form, elabora un array de chocheras, evita que refresque la pagina, lo almacena en localstorage y devuelve por DOM la info de la cochera.
 Procesa la info del form y modifica el precio de acuerdo a los parametros que ingresa el usuario, zona y features de automatismo, tamano y techo.
 Se utiliza fetch para la api del clima.
-Se usa libreri sweet alert para mostrar en pantalla nuevo precio al usuario.
+Se usa libreria sweet alert para mostrar en pantalla nuevo precio al usuario.
 
 Kreimer Nataniel - Comision 41300
 */
@@ -43,7 +43,7 @@ formulario.addEventListener('submit', (e) => {
 function agregarCochera() {
     const user = document.getElementById('user').value;
     const email = document.getElementById('email').value;
-    const precio =  parseFloat(document.getElementById('precio').value);
+    let precio =  parseFloat(document.getElementById('precio').value);
     const direccion = document.getElementById('direccion').value;
     const zona = document.getElementById('zona').value;
     const automatico = document.getElementById('automatico').checked;
@@ -57,55 +57,56 @@ function agregarCochera() {
     let porcentajeAumento = 0;
 
     // ZONA
-    if (zona.value === "ZONA CENTRO 1") {
+    if (zona === "ZONA CENTRO 1") {
         porcentajeAumento += 0.2;
-    } else if (zona.value === "ZONA CERCA 2") {
+    } else if (zona === "ZONA CERCA 2") {
         porcentajeAumento += 0.1;
     }
 
     // FEATURES
-    if (automatico.checked) {
+    if (automatico) {
         porcentajeAumento += 0.1;
     }
 
-    if (grande.checked) {
+    if (grande) {
         porcentajeAumento += 0.1;
     }
 
-    if (cubierta.checked) {
+    if (cubierta) {
         porcentajeAumento += 0.1;
     }
 
     // Aumentar el precio según el porcentaje de aumento
-    let nuevoPrecio = precio * (1 + porcentajeAumento);
+    precio = precio *(1 + porcentajeAumento);
 
-    // cartel de exito, que desaparece solo
+    // cartel de exito con libreria sweet alert, que desaparece solo en 2 secs, con asincronia.
 
     let timerInterval
-Swal.fire({
-  title: `El nuevo precio es: ${nuevoPrecio}`,
-  html: 'I will close in <b></b> milliseconds.',
-  timer: 2000,
-  timerProgressBar: true,
-  didOpen: () => {
+    Swal.fire({
+    title: `El nuevo precio es: ${precio}`, 
+    html: 'Se cierra en <b></b> milliseconds.',
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
     Swal.showLoading()
     const b = Swal.getHtmlContainer().querySelector('b')
     timerInterval = setInterval(() => {
-      b.textContent = Swal.getTimerLeft()
+    b.textContent = Swal.getTimerLeft()
     }, 100)
-  },
-  willClose: () => {
+    },
+    willClose: () => {
     clearInterval(timerInterval)
-  }
-}).then((result) => {
-  /* Read more about handling dismissals below */
-  if (result.dismiss === Swal.DismissReason.timer) {
-    console.log('cerrado by the timer')
-  }
+    }
+    }).then((result) => {
+
+        /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('cerrado por el timer')
+}
 })
 
 
-    const nuevaCochera = new Cochera(user, email, nuevoPrecio, direccion, zona, automatico, grande, cubierta);
+    const nuevaCochera = new Cochera(user, email, precio, direccion, zona, automatico, grande, cubierta);
     cocheras.unshift(nuevaCochera);
     //Agrego al LocalStorage:
     localStorage.setItem('cocheras', JSON.stringify(cocheras));
@@ -143,7 +144,7 @@ function mostrarCocheras() {
                 <p>Email: ${cochera.email}</p>
                 <p>Precio: $${cochera.precio}</p>
                 <p>Direccion: ${cochera.direccion}</p>
-                <p>Zona: ${cochera.zona}</p>
+                <p>Zona: ${cocheras.zona}</p>
                 <p>Control Remoto & Porton Automatico: ${automaticoTexto}</p>
                 <p>Apropiada para vehiculos Gran Tamano: ${grandeTexto}</p>
                 <p>El vehiculo queda completamente bajo techo: ${cubiertaTexto}</p>
